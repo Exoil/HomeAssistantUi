@@ -5,7 +5,6 @@ using HomeAssistantUi.Common.Exceptions;
 
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 
 namespace HomeAssistantUi.Services;
 
@@ -18,10 +17,10 @@ public sealed class HomeAssistantApiService :
     private readonly HttpClient _httpClient;
     private bool _disposed;
 
-    public HomeAssistantApiService(IOptions<HomeAssistantApiOptions> options)
+    public HomeAssistantApiService(HomeAssistantApiOptions options)
     {
         _httpClient = new HttpClient();
-        _httpClient.BaseAddress = new Uri(options.Value.Url);
+        _httpClient.BaseAddress = new Uri(options.Url);
     }
 
     public void Dispose()

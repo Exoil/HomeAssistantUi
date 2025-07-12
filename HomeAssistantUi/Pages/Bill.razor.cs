@@ -10,17 +10,13 @@ public partial class Bill : ComponentBase
     private const string AcceptedFileTypes = ".png, .jpg, .jpeg";
     private const int MaximumFileCount = 20;
     private IReadOnlyCollection<IBrowserFile> _files = new List<IBrowserFile>();
-    private IHomeAssistantApiService _homeAssistantApiService;
 
-    public Bill(IHomeAssistantApiService homeAssistantApiService)
-    {
-        _homeAssistantApiService = homeAssistantApiService;
-    }
+    [Inject]
+    private IHomeAssistantApiService _homeAssistantApiService { get; set; } = default!;
 
     private async Task UploadFiles(IReadOnlyList<IBrowserFile> files)
     {
         _files = files;
-        //TODO upload the files to the server
-        await _homeAssistantApiService.UploadFiles(files);
+        // await _homeAssistantApiService.UploadFiles(files);
     }
 }

@@ -1,27 +1,42 @@
 @page "/bill"
 
-<MudFileUpload T="IReadOnlyList<IBrowserFile>" Accept="@AcceptedFileTypes" FilesChanged="UploadFiles" MaximumFileCount="@MaximumFileCount">
-    <ActivatorContent>
-        <MudButton Variant="Variant.Filled"
-                   Color="Color.Primary"
-                   StartIcon="@Icons.Material.Filled.CloudUpload">
-        </MudButton>
-    </ActivatorContent>
-</MudFileUpload>
-
-
-@if (_files.Count > 0)
-{
-    <MudText Typo="@Typo.h6">@_files.Count() File@(_files.Count() == 1 ? "" : "s"):</MudText>
-    <MudList T="string">
-        @foreach (var file in _files)
-        {
-            <MudListItem Icon="@Icons.Material.Filled.AttachFile" @key="@file">
-                @file.Name <code>@file.Size bytes</code>
-            </MudListItem>
-        }
-    </MudList>
-}
+<MudPaper Height="400px" Width="100%">
+    <MudContainer MaxWidth="MaxWidth.Small" Class="d-flex flex-column align-items-center justify-center" Style="height: 100%;">
+        <MudPaper Height="300px" Width="100%" Square="true" Class="mud-theme-primary" Style="padding:5px;">
+            <div style="display: flex; justify-content: center; margin-bottom: 12px;">
+                <MudFileUpload T="IReadOnlyList<IBrowserFile>"
+                               Accept="@AcceptedFileTypes"
+                               FilesChanged="UploadFiles"
+                               MaximumFileCount="@MaximumFileCount">
+                    <ActivatorContent>
+                        <MudButton Variant="Variant.Filled"
+                                   Color="Color.Dark"
+                                   StartIcon="@Icons.Material.Filled.CloudUpload"
+                                   Style="width: 220px;">
+                            Upload Files
+                        </MudButton>
+                    </ActivatorContent>
+                </MudFileUpload>
+            </div>
+            @if (_files.Count > 0)
+            {
+                <MudText Typo="@Typo.h6" Class="mt-2">Uploaded files:</MudText>
+                <MudTable Items="_files.ToList()" Striped="true" Elevation="0">
+                    <HeaderContent>
+                        <MudTh>File Name</MudTh>
+                        <MudTh>Size (MB)</MudTh>
+                    </HeaderContent>
+                    <RowTemplate>
+                        <MudTd DataLabel="File Name">@context.Name</MudTd>
+                        <MudTd DataLabel="Size (MB)">
+                            @string.Format("{0:0.00}", context.Size / 1024.0 / 1024.0)
+                        </MudTd>
+                    </RowTemplate>
+                </MudTable>
+            }
+        </MudPaper>
+    </MudContainer>
+</MudPaper>
 
 @code
 {
