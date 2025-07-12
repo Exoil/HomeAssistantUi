@@ -2,22 +2,20 @@
 
 <MudPaper Height="400px" Width="100%">
     <MudContainer MaxWidth="MaxWidth.Small" Class="d-flex flex-column align-items-center justify-center" Style="height: 100%;">
-        <MudPaper Height="300px" Width="100%" Square="true" Class="mud-theme-primary" Style="padding:5px;">
-            <div style="display: flex; justify-content: center; margin-bottom: 12px;">
-                <MudFileUpload T="IReadOnlyList<IBrowserFile>"
-                               Accept="@AcceptedFileTypes"
-                               FilesChanged="UploadFiles"
-                               MaximumFileCount="@MaximumFileCount">
-                    <ActivatorContent>
-                        <MudButton Variant="Variant.Filled"
-                                   Color="Color.Dark"
-                                   StartIcon="@Icons.Material.Filled.CloudUpload"
-                                   Style="width: 220px;">
-                            Upload Files
-                        </MudButton>
-                    </ActivatorContent>
-                </MudFileUpload>
-            </div>
+        <MudPaper Height="300px" Width="100%" Square="true" Class="mud-theme-primary d-flex flex-column align-items-center justify-center" Style="gap:16px">
+            <MudFileUpload T="IReadOnlyList<IBrowserFile>"
+                           Accept="@AcceptedFileTypes"
+                           FilesChanged="UploadFiles"
+                           MaximumFileCount="@MaximumFileCount">
+                <ActivatorContent>
+                    <MudButton Variant="Variant.Filled"
+                               Color="Color.Dark"
+                               StartIcon="@Icons.Material.Filled.CloudUpload"
+                               Style="margin:auto;display:block;width:220px;">
+                        Upload Files
+                    </MudButton>
+                </ActivatorContent>
+            </MudFileUpload>
             @if (_files.Count > 0)
             {
                 <MudText Typo="@Typo.h6" Class="mt-2">Uploaded files:</MudText>
