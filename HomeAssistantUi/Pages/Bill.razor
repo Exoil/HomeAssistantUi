@@ -1,14 +1,14 @@
 @page "/bill"
 
-<MudFileUpload T="IBrowserFile" FilesChanged="UploadFiles">
+<MudFileUpload T="IReadOnlyList<IBrowserFile>" Accept="@AcceptedFileTypes" FilesChanged="UploadFiles" MaximumFileCount="@MaximumFileCount">
     <ActivatorContent>
         <MudButton Variant="Variant.Filled"
                    Color="Color.Primary"
                    StartIcon="@Icons.Material.Filled.CloudUpload">
-            Upload Files
         </MudButton>
     </ActivatorContent>
 </MudFileUpload>
+
 
 @if (_files.Count > 0)
 {
