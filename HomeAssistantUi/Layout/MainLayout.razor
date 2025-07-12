@@ -1,0 +1,23 @@
+﻿@using HomeAssistantUi.Pages.Components
+@inherits LayoutComponentBase
+@* Required *@
+<MudThemeProvider/>
+<MudPopoverProvider/>
+
+@* Needed for dialogs *@
+<MudDialogProvider/>
+
+@* Needed for snackbars *@
+<MudSnackbarProvider/>
+
+<MudLayout>
+    <MudAppBar>
+        Home Assistant UI
+    </MudAppBar>
+    <MudDrawer Open="true">
+        <MenuBar></MenuBar>
+    </MudDrawer>
+    <MudMainContent MaxWidth="MaxWidth.Medium">
+        @Body
+    </MudMainContent>
+</MudLayout>

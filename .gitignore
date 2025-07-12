@@ -1,0 +1,50 @@
+## Me
+please create git ignore file for this project. I edit this project in rider ide
+
+## AI Assistant
+.gitignore
+``` 
+# .NET build output
+bin/
+obj/
+
+# Rider IDE info
+.idea/
+*.sln.iml
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider project-specific files
+.idea/
+*.idea/
+*.sln.iml
+*.RiderInfo
+
+# Visual Studio/JetBrains working folders
+.vs/
+
+# Mac OS specific files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Blazor WASM published artifacts
+wwwroot/bin/
+wwwroot/obj/
+
+# ASP.NET generated files
+Properties/launchSettings.json
+
+# Logs
+*.log
+```
+This file is set up for .NET, Blazor, and JetBrains Rider on macOS.
+Feel free to adjust paths depending on custom setups or any additional needs!
+
