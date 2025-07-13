@@ -19,4 +19,6 @@ public partial class Bill : ComponentBase
         _files = files;
         // await _homeAssistantApiService.UploadFiles(files);
     }
+
+    private string GetSizeInMB(IBrowserFile file) =>  string.Format("{0:0.00}", file.Size / 1024.0 / 1024.0);
 }

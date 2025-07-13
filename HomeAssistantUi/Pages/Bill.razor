@@ -1,41 +1,26 @@
 @page "/bill"
 
-<MudPaper Height="400px" Width="100%">
-    <MudContainer MaxWidth="MaxWidth.Small" Class="d-flex flex-column align-items-center justify-center" Style="height: 100%;">
-        <MudPaper Height="300px" Width="100%" Square="true" Class="mud-theme-primary d-flex flex-column align-items-center justify-center" Style="gap:16px">
-            <MudFileUpload T="IReadOnlyList<IBrowserFile>"
-                           Accept="@AcceptedFileTypes"
-                           FilesChanged="UploadFiles"
-                           MaximumFileCount="@MaximumFileCount">
-                <ActivatorContent>
-                    <MudButton Variant="Variant.Filled"
-                               Color="Color.Dark"
-                               StartIcon="@Icons.Material.Filled.CloudUpload"
-                               Style="margin:auto;display:block;width:220px;">
-                        Upload Files
-                    </MudButton>
-                </ActivatorContent>
-            </MudFileUpload>
-            @if (_files.Count > 0)
-            {
-                <MudText Typo="@Typo.h6" Class="mt-2">Uploaded files:</MudText>
-                <MudTable Items="_files.ToList()" Striped="true" Elevation="0">
-                    <HeaderContent>
-                        <MudTh>File Name</MudTh>
-                        <MudTh>Size (MB)</MudTh>
-                    </HeaderContent>
-                    <RowTemplate>
-                        <MudTd DataLabel="File Name">@context.Name</MudTd>
-                        <MudTd DataLabel="Size (MB)">
-                            @string.Format("{0:0.00}", context.Size / 1024.0 / 1024.0)
-                        </MudTd>
-                    </RowTemplate>
-                </MudTable>
-            }
-        </MudPaper>
-    </MudContainer>
-</MudPaper>
+<MudFileUpload T="IReadOnlyList<IBrowserFile>"
+               Accept="@AcceptedFileTypes"
+               FilesChanged="UploadFiles"
+               MaximumFileCount="@MaximumFileCount">
+    <ActivatorContent>
+        <MudButton Variant="Variant.Filled"
+                   Color="Color.Dark"
+                   StartIcon="@Icons.Material.Filled.CloudUpload"
+                   Style="margin:auto;display:block;width:220px;">
+            Upload Files
+        </MudButton>
+    </ActivatorContent>
+</MudFileUpload>
 
-@code
-{
-}
+<MudTable Items="@_files.Take(MaximumFileCount)" Breakpoint="Breakpoint.Sm" LoadingProgressColor="Color.Info">
+    <HeaderContent>
+        <MudTh>File name</MudTh>
+        <MudTh>Size (MB)</MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Name">@context.Name</MudTd>
+        <MudTd DataLabel="Size">@context.Size</MudTd>
+    </RowTemplate>
+</MudTable>
