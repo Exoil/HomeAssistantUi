@@ -1,10 +1,7 @@
 using System.Net.Http.Json;
-
 using HomeAssistantUi.Common;
 using HomeAssistantUi.Common.Exceptions;
-
 using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.AspNetCore.Mvc;
 
 namespace HomeAssistantUi.Services;
 

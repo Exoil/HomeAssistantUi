@@ -1,10 +1,8 @@
-using Microsoft.AspNetCore.Mvc;
-
 namespace HomeAssistantUi.Common.Exceptions;
 
 public static class ExceptionDefaults
 {
-    public static readonly ProblemDetails GetDefaultProblemDetails = new ProblemDetails()
+    public static readonly ProblemDetails GetDefaultProblemDetails = new()
     {
         Type = "https://httpstatuses.com/500",
         Title = "Undefined error.",

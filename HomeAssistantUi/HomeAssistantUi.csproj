@@ -4,6 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
     <ItemGroup>
@@ -16,9 +17,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Reference Include="Microsoft.AspNetCore.Http.Abstractions">
-        <HintPath>..\..\..\..\..\..\usr\local\share\dotnet\shared\Microsoft.AspNetCore.App\8.0.13\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
-      </Reference>
+      <Content Include="..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
     </ItemGroup>
 
 </Project>
