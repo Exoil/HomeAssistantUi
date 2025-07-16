@@ -69,7 +69,7 @@ public sealed class HomeAssistantApiService :
 
     public async Task UploadFiles(IReadOnlyCollection<IBrowserFile> files, CancellationToken cancellationToken = default)
     {
-        const string route = "/bills";
+        const string route = "bills";
         var content = ConvertFilesToMultipartDataContent(files, cancellationToken);
 
         var response = await _httpClient.PostAsync(route, content, cancellationToken);
