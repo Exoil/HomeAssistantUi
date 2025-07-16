@@ -70,7 +70,7 @@ public sealed class HomeAssistantApiService :
         _disposed = true;
     }
 
-    public async Task UploadFiles(IReadOnlyList<IBrowserFile> files, CancellationToken cancellationToken = default)
+    public async Task UploadFiles(IReadOnlyCollection<IBrowserFile> files, CancellationToken cancellationToken = default)
     {
         const string route = "/bills";
         var content = ConvertFilesToMultipartDataContent(files, cancellationToken);
@@ -85,7 +85,7 @@ public sealed class HomeAssistantApiService :
     }
 
     private static MultipartFormDataContent ConvertFilesToMultipartDataContent(
-        IReadOnlyList<IBrowserFile> files,
+        IReadOnlyCollection<IBrowserFile> files,
         CancellationToken cancellationToken)
     {
         var content = new MultipartFormDataContent();

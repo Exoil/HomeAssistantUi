@@ -4,5 +4,5 @@ namespace HomeAssistantUi.Services;
 
 public interface IHomeAssistantApiService
 {
-    Task UploadFiles(IReadOnlyList<IBrowserFile> file, CancellationToken cancellationToken = default);
+    Task UploadFiles(IReadOnlyCollection<IBrowserFile> file, CancellationToken cancellationToken = default);
 }

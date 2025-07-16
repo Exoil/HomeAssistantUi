@@ -1,26 +1,38 @@
 @page "/bill"
+@using HomeAssistantUi.Extenstions
 
-<MudFileUpload T="IReadOnlyList<IBrowserFile>"
-               Accept="@AcceptedFileTypes"
-               FilesChanged="UploadFiles"
-               MaximumFileCount="@MaximumFileCount">
-    <ActivatorContent>
-        <MudButton Variant="Variant.Filled"
-                   Color="Color.Dark"
-                   StartIcon="@Icons.Material.Filled.CloudUpload"
-                   Style="margin:auto;display:block;width:220px;">
-            Upload Files
-        </MudButton>
-    </ActivatorContent>
-</MudFileUpload>
+<MudStack Row="true" Spacing="5" Justify="Justify.Center">
+    <MudFileUpload T="IReadOnlyList<IBrowserFile>"
+                   Accept="@AcceptedFileTypes"
+                   FilesChanged="AddFiles"
+                   MaximumFileCount="@MaximumFileCount">
+        <ActivatorContent>
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Dark"
+                       StartIcon="@Icons.Material.Filled.CloudUpload"
+                       Style="width:220px;">
+                Add files to upload files
+            </MudButton>
+        </ActivatorContent>
+    </MudFileUpload>
 
-<MudTable Items="@_files.Take(MaximumFileCount)" Breakpoint="Breakpoint.Sm" LoadingProgressColor="Color.Info">
+    <MudButton Variant="Variant.Filled"
+               Color="Color.Dark"
+               Disabled="@IsLocked"
+               OnClick="@UploadFiles"
+               StartIcon="@Icons.Material.Filled.CloudUpload"
+               Style="width:220px;">
+        Upload Files
+    </MudButton>
+</MudStack>
+
+<MudTable Items="@_files.Take(MaximumFileCount)" Breakpoint="Breakpoint.Sm" LoadingProgressColor="Color.Info" Style = "overflow-y: scroll;">
     <HeaderContent>
         <MudTh>File name</MudTh>
         <MudTh>Size (MB)</MudTh>
     </HeaderContent>
     <RowTemplate>
         <MudTd DataLabel="Name">@context.Name</MudTd>
-        <MudTd DataLabel="Size">@context.Size</MudTd>
+        <MudTd DataLabel="Size">@context.GetSizeInMb()</MudTd>
     </RowTemplate>
 </MudTable>

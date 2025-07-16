@@ -14,11 +14,15 @@ public partial class Bill : ComponentBase
     [Inject]
     private IHomeAssistantApiService _homeAssistantApiService { get; set; } = default!;
 
-    private async Task UploadFiles(IReadOnlyList<IBrowserFile> files)
+    private void AddFiles(IReadOnlyList<IBrowserFile> files)
     {
         _files = files;
-        // await _homeAssistantApiService.UploadFiles(files);
     }
 
-    private string GetSizeInMB(IBrowserFile file) =>  string.Format("{0:0.00}", file.Size / 1024.0 / 1024.0);
+    private async Task UploadFiles()
+    {
+        await _homeAssistantApiService.UploadFiles(_files);
+    }
+
+    public bool IsLocked => _files.Count >= MaximumFileCount || _files.Count == 0;
 }
